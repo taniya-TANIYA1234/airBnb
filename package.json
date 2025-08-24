@@ -1,0 +1,26 @@
+{
+  "name": "project-1",
+  "version": "1.0.0",
+  "description": "This project is about the to-let service avail in panipat,Haryana",
+  "main": "app.js",
+  "scripts": {
+    "start":"nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taniya-TANIYA1234/airBnb.git"
+  },
+  "author": "Taniya Chauhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taniya-TANIYA1234/airBnb/issues"
+  },
+  "homepage": "https://github.com/taniya-TANIYA1234/airBnb#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0",
+    "nodemon": "^3.1.10"
+  }
+}
