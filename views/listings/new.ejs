@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="text-align: center; background-color: blueviolet;">
+    <h1>ADD THE DETAILS !</h1><br>
+    <div style="width: 450px;background-color: rgb(213, 210, 210); border:2px solid grey; display: flex; flex-wrap: wrap; justify-content: space-evenly; justify-self: center;">
+        <form method="post" action="/listings" >
+            <div><input type="text" name="listing[price]" placeholder="Price" style="width: 188px; ">
+           <input type="text" name="listing[title]" placeholder="Title" style="width: 200px; "> </div>
+            <div><input type="text" name="listing[description]" placeholder="describe" style="width: 400px; "></div>
+            <div><input type="text" name="listing[imageUrl]" placeholder="Image URL" style="width: 400px; "></div>
+           <div><input type="text" name="listing[country]" placeholder="country" style="width: 188px; ">
+            <input type="text" name="listing[city]" placeholder="city" style="width: 200px; "></div>
+        </div> <br>
+            <button style="background-color: rgb(167, 78, 0); color: white;">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
