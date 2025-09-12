@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Listing</title>
-</head>
+<% layout('/layouts/boilerplate') %>
+
 <body>
-     <h1>CHANGING THE DETAILS for id_number  <p><%=listing.id%></p> </h1><br>
-    <div style="width: 450px;background-color: rgb(213, 210, 210); border:2px solid grey; display: flex; flex-wrap: wrap; justify-content: space-evenly; justify-self: center;">
-        <form method="POST" action="/listings/<%=listing.id%>/edit?_method=PUT" method="put" >
-            <div><input type="text" name="listing[price]" value="<%=listing.price%>" style="width: 188px; ">
-           <input type="text" name="listing[title]" value="<%=listing.title%>" style="width: 200px; "> </div>
-           <textarea name="listing[description]" type="text" cols="53" rows="3""><%=listing.description%></textarea>
-            <div><input type="text" name="listing[imageUrl]" value="<%=listing.imageUrl%>" style="width: 400px; "></div>
-           <div><input type="text" name="listing[country]" value="<%=listing.country%>" style="width: 188px; ">
-            <input type="text" name="listing[location]" value="<%=listing.location%>" style="width: 200px; "></div>
-        </div> <br>
-            <button style="background-color: rgb(167, 78, 0); color: white;">EDIT</button>
+     <h1>Edit the details -<i><%=listing.title%></i> </h1><br>
+    <div class="row mb-5">
+     <div  class="col-8 offset-2">
+        <form method="POST" action="/listings/<%=listing.id%>?_method=PUT" method="put"  class="row g-4 needs-validation" novalidate>
+          <div class="row">
+            <div class="mb-3 col-md-8">
+                <label for="title" class="form-control">  Title:</label>
+           <input class="form-control" type="text" id="title" name="listing[title]" value="<%=listing.title%>" required> </div>
+             <div class="mb-3 col-md-4">
+                <label for="price" class="form-control">Price:</label>
+             <input class="form-control" type="text" id="price" name="listing[price]" value="<%=listing.price%>" required></div>
+          </div>
+             <div class="mb-3"> 
+             <label  for="textarea" class="form-control">Description:</label>
+             <textarea  name="listing[description]" class="form-control" id="textarea" required><%=listing.description%></textarea></div>
+            <div class="mb-3">
+            <label for="imageUrl" class="form-control">Image URL:</label>
+            <input type="text" class="form-control" name="listing[imageUrl]" value="<%=listing.imageUrl%>" id="imageUrl" required></div>
+           <div class="row">
+            <div class="mb-3 col-md-8">
+            <label for="cntry" class="form-control">Country:</label>
+           <input type="text" class="form-control" name="listing[country]" value="<%=listing.country%>" id="cntry" required></div>
+           <div class="mb-3 col-md-4">
+            <label for="loc" class="form-control">Location:</label>
+           <input type="text" class="form-control" name="listing[location]" value="<%=listing.location%>" id="loc" required></div>
+           </div>
+           <br>
+            <button class="btn btn-danger">EDIT</button>
         </form>
+        </div>
+    </div>
 </body>
-</html>

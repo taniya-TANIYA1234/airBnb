@@ -1,28 +1,34 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+    <h1>All Listings</h1>
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-2">
+   <% for(let list of allListings){ %>
+
+     <a href="/listings/<%= list._id%>">    
+ <div class="card col" style="width: 15rem;">
+  <img src="<%= list.imageUrl%>" class="card-img-top" alt="..." style="height:15rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= list.title.slice(0,12).concat("...") %></h5>
+    <p class="card-text">&#8377;<%= list.price.toLocaleString("en-IN")%>/month</p>
+    
+  </div>
+</div></a> 
+  <% } %>
+</div>
+</body>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <h1>All Listings</h1>
-    <h3><a href="/listings/new" style="text-decoration: none;">WANT TO ADD LISTING?</a></h3>
-   <% for(let list of allListings){ %>
-
-            <span style="height: 280px; width:230px; border: 2px solid rgb(195, 194, 194); padding: 10px; margin: 10px; display: inline-block;">
-            
-               <h3><i><%= list.title.slice(0, 5).concat('...') %></i></h3> 
-              <a href="/listings/<%=list._id%>"><img src="<%= list.imageUrl %>" alt="image" style="width: 220px; height: 150px;"></a>
-              
-                <p>
-                      Location: <%= list.location %>
-                 <br> Country: <%= list.country %><br>
-                 <span> <a href="/listings/<%=list._id%>/edit">UPDATE</a></span>
-                </p> 
-
-        </span>
-
-  <% } %>
+  
 </body>
 </html>
