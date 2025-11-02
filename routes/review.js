@@ -1,10 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams:true});
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { reviewschema } = require("../schema.js");
 const Review = require("../models/review.js");
-
+const Listing = require("../models/listing.js");
 
 const validationReview = (req,res,next)=>{
       let {error} = reviewschema.validate(req.body);
@@ -14,8 +14,7 @@ const validationReview = (req,res,next)=>{
          } else {
             next();
          }
-}
-
+      }
 
 router.post("/",
     validationReview,
@@ -26,6 +25,7 @@ router.post("/",
     listing.reviews.push(newReview);
     await newReview.save();
     await listing.save();
+    req.flash("success","Successfully added a review");
     res.redirect(`/listings/${listing._id}`);
 })
 );

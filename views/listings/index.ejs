@@ -4,7 +4,7 @@
     <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-2">
    <% for(let list of allListings){ %>
 
-     <a href="/listings/<%= list._id%>">    
+     <a href="/listings/<%= list._id%>" style="text-decoration:none; color:black;">    
  <div class="card col" style="width: 15rem;">
   <img src="<%= list.imageUrl%>" class="card-img-top" alt="..." style="height:15rem;">
   <div class="card-body">
@@ -15,20 +15,9 @@
 </div></a> 
   <% } %>
 </div>
+
 </body>
 
 
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
-</html>
