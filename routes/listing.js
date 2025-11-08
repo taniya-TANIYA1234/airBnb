@@ -4,21 +4,13 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressError.js");
 const { listingSchema} = require("../schema.js");
 const Listing = require("../models/listing.js");
-const { isLoggedIn,isOwner } = require("../middleware.js");
+const { isLoggedIn,isOwner,validationList } = require("../middleware.js");
+const flash = require("connect-flash"); 
 
 
 
 
 
-const validationList = (req,res,next)=>{
-      let {error} = listingSchema.validate(req.body);
-         if(error){
-            let errMsg = error.details.map((el)=>el.message).join(",");
-            throw new ExpressError(400,errMsg);
-         } else {
-            next();
-         }
-}
 
 
 router.get("/", async (req, res)=>{
@@ -34,7 +26,7 @@ router.get("/new",isLoggedIn, (req, res)=>{
 router.post(
     "/",
     isLoggedIn,
-    isOwner,
+   
     validationList,
     wrapAsync(async (req, res)=>{
     const listings = new Listing(req.body.listing);
@@ -45,7 +37,10 @@ router.post(
    
 }));
 
-router.get("/edit/:id",isLoggedIn, async (req, res)=>{
+router.get("/edit/:id",
+    isLoggedIn,
+    isOwner, 
+    async (req, res)=>{
     
     const {id} = req.params;
     const listing = await Listing.findById(id);
@@ -53,8 +48,13 @@ router.get("/edit/:id",isLoggedIn, async (req, res)=>{
 });
 router.get("/:id",wrapAsync(async (req, res)=>{
     const {id} = req.params;
-    const listing = await Listing.findById(id).populate("reviews").populate("owner");
-
+    const listing = await Listing.findById(id)
+    .populate({ path: "reviews" ,
+        populate: {
+            path: "reviewer",
+        }
+    })
+    .populate("owner");
     res.render("listings/show.ejs", {listing});
 }));
 

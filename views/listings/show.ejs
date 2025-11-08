@@ -18,7 +18,7 @@
                <br> <b>Location:</b> <%= listing.location %>
                <br> <b>Country:</b> <%= listing.country %>
 <br><br>
-
+ <% if(currentUser && listing.owner[0]._id.equals(currentUser._id)){ %>
        <div class="d-flex gap-3">
               <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
                <button type="submit" class="btn btn-danger">DELETE</button>
@@ -27,9 +27,11 @@
                <button class="btn btn-primary">UPDATE</button>
            </form>
          </div>
+          <% } %>
              </div>
              </div>
              <hr>
+<% if(currentUser){ %>
 <div class="col-8 offset-2">
     <h4>Leave a review</h4>
     <form action="/listings/<%=listing._id%>/reviews" method="post" class="needs-validation" novalidate>
@@ -47,7 +49,7 @@
       </div>
         <button class="btn btn-primary">Submit Review</button>
     </form>
-
+    <% }%>
     <br>
 
     <h3 >Reviews</h3>
@@ -55,23 +57,24 @@
         <% for(let rev of listing.reviews){ %>
          
          
-         <div class="card col-5  ms-3 mb-3">
+  <div class="card col-5  ms-3 mb-3">
   <div class="card-body">
-    <h5 class="card-title">
-  
-    <p class="card-text"></p>
+    <h5 class="card-title"><%=rev.reviewer.username %></h5>
+    <p class="card-text"><%= rev.rating %> Stars</p>
     <p class="card-text"><%= rev.comment %> </p>
      </div>
     <form action="/listings/<%=listing._id%>/reviews/<%=rev._id%>?_method=DELETE" method="post">
-    <button class="btn btn-sm btn-dark mb-3">DELETE</button>
+    <button class="btn btn-danger">DELETE</button>
     
   
  
 </div>
        
-        <% } %>
+       
     </div>
-</div>
-</div>
-</div>
+ <% } %>
+
+
+
+
 </body>

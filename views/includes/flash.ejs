@@ -1,7 +1,14 @@
 <% if (success && success.length) { %>
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success alert-dismissible fade show col-6 offset-3" role="alert">
 
   <h1><%= success %></h1>
+
+</div>
+<% } %>
+<% if (error && error.length) { %>
+<div class="alert alert-danger alert-dismissible fade show col-6 offset-3" role="alert">
+
+  <h1><%= error %></h1>
 
 </div>
 <% } %>

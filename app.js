@@ -2,18 +2,21 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const requests = require('method-override'); 
-const ejsMate = require("ejs-mate");
-const ExpressError = require("./utils/ExpressError.js");
 const path = require("path");
+const ExpressError = require("./utils/ExpressError.js");
+const ejsMate = require("ejs-mate");
+const Listing = require("./models/listing.js");
+
 const listings = require("./routes/listing.js"); 
 const reviews = require("./routes/review.js");
 const user = require("./routes/user.js");
-const Listing = require("./models/listing.js");
+
 const session = require("express-session");
 const flash = require("connect-flash"); 
 const passport = require("passport");
 const localStrategy = require("passport-local");
 const User = require("./models/user.js");
+
 app.set("view engine" , "ejs");
 app.engine("ejs" , ejsMate);
 app.set("views" , path.join(__dirname , "views"));
